@@ -1,0 +1,45 @@
+step 1.Download ohpc package and install
+`````````````````````````````````````````
+https://github.com/openhpc/ohpc/releases/download/v1.3.GA/ohpc-release-1.3-1.el7.x86_64.rpm
+yum install ohpc-release-1.3-1.el7.x86_64.rpm 
+yum install ohpc-nagios
+step 2. rename services.cfg.example to services.cfg
+````````````````````````````````````````````````````
+mv /etc/nagios/conf.d/services.cfg.example /etc/nagios/conf.d/services.cfg
+step 3. set new password for nagiosadmin
+```````````````````````````````````````````
+htpasswd -c /etc/nagios/passwd nagiosadmin
+step 4. make directory and change ownership to nagios
+``````````````````````````````````````````````````````
+mkdir -p /var/run/nagios
+chown -R nagios:nagios /var/run/nagios
+step 5. start nagios servie
+````````````````````````````
+systemctl start nagios
+step 6. remanehosts.cfg.example to hosts.cfg
+`````````````````````````````````````````````
+mv /etc/nagios/conf.d/hosts.cfg.example /etc/nagios/conf.d/hosts.cfg
+
+Step 7. Add all Client name and Client ip address
+``````````````````````````````````````````````````
+vim /etc/nagios/conf.d/hosts.cfg
+	#add client name & ip address
+
+CLIENT MACHINE
+Step 8. Download ohpc package and install
+``````````````````````````````````````````
+https://github.com/openhpc/ohpc/releases/download/v1.3.GA/ohpc-release-1.3-1.el7.x86_64.rpm
+yum install ohpc-release-1.3-1.el7.x86_64.rpm 
+yum install nagios-plugins-all nrpe-ohpc
+
+Step 9. make directory and change ownership to nagios
+``````````````````````````````````````````````````````
+mkdir -p /var/log/nagios
+chown -R nrpe:nrpe /var/log/nagios
+
+Step 10. Add Master's ip address
+`````````````````````````````````
+vim /etc/nagios/nrpe.cfg
+	#add master's ip in line no 106
+
+#restart all services
