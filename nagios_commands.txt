@@ -43,3 +43,6 @@ vim /etc/nagios/nrpe.cfg
 	#add master's ip in line no 106
 
 #restart all services
+
+#open browser with ip or local host/nagios
+
